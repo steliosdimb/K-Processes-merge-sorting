@@ -1,0 +1,30 @@
+
+CC = gcc
+CFLAGS = -Wall -g
+
+# List of source files
+SRCS = bubblesort.c create_array_of_recs.c
+
+# List of header files
+HDRS = create_array_of_recs.h bubblesort.h record.h
+
+# List of object files
+OBJS = $(SRCS:.c=.o)
+
+# Executable name
+EXEC = bubblesort
+
+# Main target
+$(EXEC): $(OBJS)
+	$(CC) $(CFLAGS) -o $(EXEC) $(OBJS)
+
+# Dependencies
+bubblesort.o: bubblesort.c bubblesort.h
+create_array_of_recs.o: create_array_of_recs.c create_array_of_recs.h
+
+# Clean rule
+clean:
+	rm -f $(EXEC) $(OBJS)
+
+# Phony target to avoid conflicts with files named clean
+.PHONY: clean
